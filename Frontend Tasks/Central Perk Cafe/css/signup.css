@@ -1,0 +1,264 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+.main{
+    height: 1024px;
+    width: 1280px;
+    display: flex;
+}
+
+.left-section{
+    height: 100%;
+    width: 40%;
+    background-image: url("../assets/images/SignUp-Page-img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.right-section{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF8F5;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    width: 60%;
+    justify-content: center;
+}
+
+#logo-area{
+    align-self:flex-start;
+    height: 10%;
+    width: 70%;
+    padding-bottom: 48px;
+    color: #23160C;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+#header-margin{
+    padding-bottom: 48px;
+}
+
+#heading1{
+    font-weight: 700;
+    font-size: 32px;
+}
+
+#heading2{
+    color: #4E453F;
+    font-size: 16px;
+}
+
+#form{
+    width: 100%;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #4E453F;
+}
+
+.input-group{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-wrapper{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: #EDE7E4;
+    height: 62.59px;
+    width: 100%;
+    border-radius: 0px;
+    padding: 0px;
+}
+
+.password-group{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 12px;
+}
+
+.input-wrapper-password{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: #EDE7E4;
+    height: 62.59px;
+    width: 100%;
+    border-radius: 0px;
+    padding: 0px;
+}
+
+.input-group-password{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 80.59px;
+    width: 100%;
+}
+
+svg{
+    height: 24.39px;
+    width: 16px;
+    padding-left: 10px;
+}
+
+#full-name, #email{
+    background-color: #EDE7E4;
+    height: 24px;
+    width: 100%;
+    border: none;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-family: "Poppins", sans-serif;
+}
+
+#full-name:focus, #email:focus, #password:focus, #confirm-password:focus{
+    border: none;
+    outline: none;
+}
+
+#password, #confirm-password{
+    width: 100%;
+    background-color: #EDE7E4;
+    border: 2px #EDE7E4 solid;
+    border-radius: 8px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-family: "Poppins", sans-serif;
+}
+
+.input-group-checkbox{
+    display: flex;
+    gap: 4px;
+    height: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#signup{
+    height: 46px;
+    width: 100%;
+    padding-bottom: 16px;
+    background-color: #23160C;
+    border-radius: 8px;
+    padding: 0%;
+    border: none;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+#bottom-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a, a:hover, a:visited, a:focus, a:active{
+    color: #23160C;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+#footer{
+    padding-top: 80px;
+}
+
+#footer-links-group{
+    border-top: 1px solid #D2C4BC;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#footer-links, #footer-links:hover, #footer-links:visited, #footer-links:focus, #footer-links:active{
+    padding-top: 24px;
+    text-decoration: none;
+    color: #695D41;
+}
+
+@media screen and (width<=1110px) {
+    #footer-links{
+        font-size: 16px;
+    }
+}
+
+@media screen and (width<=950px) {
+    .main{
+        width: 100%;
+    }
+
+    #footer-links{
+        font-size: 12px;
+    }
+}
+
+@media screen and (width<=870px) {
+    body{
+        overflow: scroll;
+    }
+
+    .main{
+        width: 100%;
+    }
+
+    .left-section{
+        display: none;
+    }
+
+    .right-section{
+        width: 100%;
+    }
+}
+
+@media screen and (width<=597px) {
+    .container{
+        width: 70%;
+    }
+}
+
+@media screen and (width<=515px) {
+    .container{
+        width: 80%;
+    }
+}
+
+@media screen and (width<=447px) {
+    #logo-area{
+        font-size: 16px;
+    }
+}
+
+@media screen and (width<=447px) {
+    .container{
+        width: 90%;
+    }
+}
