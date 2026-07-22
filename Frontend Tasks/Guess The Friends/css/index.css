@@ -192,6 +192,10 @@ hr{
     background-size: cover;
 }
 
+.question-header{
+    width: 100%;
+}
+
 .question-number, .question{
     font-family: "Nunito", sans-serif;
     font-weight: 900;
@@ -253,6 +257,12 @@ hr{
     font-family: "Nunito", sans-serif;
     font-weight: 900;
     font-size: 20px;
+}
+
+.answer{
+    font-family: "Nunito", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .next-button{
