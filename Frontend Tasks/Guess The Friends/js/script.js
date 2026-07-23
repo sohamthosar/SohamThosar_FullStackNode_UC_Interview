@@ -1,6 +1,7 @@
 const start_button = document.getElementById("start");
 const main_page = document.querySelector(".main-page");
 const quiz_page = document.querySelector(".quiz-page");
+const restart_page = document.querySelector(".restart-page");
 
 const question_image = document.querySelector(".question-image");
 const question_number = document.querySelector(".question-number");
@@ -21,12 +22,17 @@ const opt_4 = document.getElementById("option-4");
 const ans = document.querySelector(".answer");
 const next_button = document.getElementById("next");
 
+const score_disp = document.getElementById("score-1");
+const play_again = document.getElementById("play-again");
+const home_page = document.getElementById("home-page");
+
 const options = [opt_1, opt_2, opt_3, opt_4];
 
 let counter = 0;
 let score = 0;
 
 quiz_page.style.display = "none";
+restart_page.style.display = "none";
 
 console.log(start_button);
 console.log(main_page);
@@ -49,7 +55,7 @@ const questionnaire = [
     },
     
     {
-        image : "../assets/images/question-1.jpg",
+        image : "./assets/images/question-2.jpeg",
         question : "What is Chandler Bing's official job title?",
         options : [
             "Statistical analysis and data recognition",
@@ -61,7 +67,7 @@ const questionnaire = [
     },
     
     {
-        image : "../assets/images/question-1.jpg",
+        image : "./assets/images/question-3.png",
         question : "Which character is famous for the iconic catchphrase 'How you doin'?",
         options : [
             "Ross Geller",
@@ -73,7 +79,7 @@ const questionnaire = [
     },
     
     {
-        image : "../assets/images/question-1.jpg",
+        image : "./assets/images/question-4.jpg",
         question : "What is the name of Ross Geller's beloved pet monkey?",
         options : [
             "Marcel",
@@ -85,7 +91,7 @@ const questionnaire = [
     },
     
     {
-        image : "../assets/images/question-1.jpg",
+        image : "./assets/images/question-5.jpg",
         question : "What is the name of Phoebe Buffay's most famous original song?",
         options : [
             "Sticky Shoes",
@@ -97,7 +103,7 @@ const questionnaire = [
     },
     
     {
-        image : "../assets/images/question-1.jpg",
+        image : "./assets/images/question-6.webp",
         question : "How many times has Ross Geller been divorced throughout the series?",
         options : [
             "Once",
@@ -109,7 +115,7 @@ const questionnaire = [
     },
     
     {
-        image : "../assets/images/question-1.jpg",
+        image : "./assets/images/question-7.jpg",
         question : "Whose name did Ross accidentally say during his wedding vows to Emily?",
         options : [
             "Carol's",
@@ -141,6 +147,12 @@ function startQuiz(){
     ans.innerHTML = "";
     next_button.style.backgroundColor = "#F3F4F6";
     next_button.style.color = "#D1D5DC";
+    if(counter == 6){
+        next_button.innerHTML = "See My Results";
+    }
+    else{
+        next_button.innerHTML = "Next Question";
+    }
 
     question_image.style.backgroundImage = `url("${questionnaire[counter].image}")`;
     question_number.innerHTML = `QUESTION ${counter+1}`;
@@ -187,14 +199,35 @@ optionButtons.forEach((button, index) => {
 });
 
 next_button.addEventListener("click", () => {
-
     counter++;
 
     if(counter < questionnaire.length){
         startQuiz();
     }
     else{
-        alert("Quiz Finished!");
+        quiz_page.style.display = "none";
+        restart_page.style.display = "flex";
+        restart();
     }
-
 });
+
+function restart(){
+    score_disp.innerHTML = `${score}`;
+}
+
+play_again.addEventListener("click", () => {
+    main_page.style.display = "none";
+    quiz_page.style.display = "flex";
+    restart_page.style.display = "none";
+    counter = 0;
+    score = 0;
+    startQuiz();
+});
+
+home_page.addEventListener("click", () => {
+    main_page.style.display = "flex";
+    quiz_page.style.display = "none";
+    restart_page.style.display = "none";
+    counter = 0;
+    score = 0;
+})
