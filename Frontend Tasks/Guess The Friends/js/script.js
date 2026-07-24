@@ -22,9 +22,12 @@ const opt_4 = document.getElementById("option-4");
 const ans = document.querySelector(".answer");
 const next_button = document.getElementById("next");
 
+const progressBar = document.querySelector(".progress-bar");
 const score_disp = document.getElementById("score-1");
 const play_again = document.getElementById("play-again");
 const home_page = document.getElementById("home-page");
+
+const review_line_1 = document.getElementById("review-line-1");
 
 const options = [opt_1, opt_2, opt_3, opt_4];
 
@@ -33,13 +36,6 @@ let score = 0;
 
 quiz_page.style.display = "none";
 restart_page.style.display = "none";
-
-console.log(start_button);
-console.log(main_page);
-console.log(quiz_page);
-console.log(opt_1);
-console.log(question_image);
-console.log(opt_1_button.innerHTML);
 
 const questionnaire = [
     {
@@ -127,74 +123,82 @@ const questionnaire = [
     }
 ]
 
-console.log(questionnaire[0].image);
-
 start_button.addEventListener("click", () => {
     main_page.style.display = "none";
     quiz_page.style.display = "flex";
-    counter = 0;
-    score = 0;
+    restart_page.style.display = "none";
+    resetGame();
     startQuiz();
 });
 
 function startQuiz(){
+
     optionButtons.forEach((button) => {
-        button.style.backgroundColor = "white";
-        button.style.borderColor = "#E9D4FF";
+        button.style.backgroundColor = "";
+        button.style.borderColor = "";
         button.style.pointerEvents = "auto";
     });
 
     ans.innerHTML = "";
+    
+    next_button.disabled = true;
     next_button.style.backgroundColor = "#F3F4F6";
     next_button.style.color = "#D1D5DC";
-    if(counter == 6){
+
+    if(counter === questionnaire.length - 1){
         next_button.innerHTML = "See My Results";
     }
     else{
         next_button.innerHTML = "Next Question";
     }
 
+    
     question_image.style.backgroundImage = `url("${questionnaire[counter].image}")`;
     question_number.innerHTML = `QUESTION ${counter+1}`;
     question_disp.innerHTML = questionnaire[counter].question;
-    opt_1.innerHTML = questionnaire[counter].options[0];
-    opt_2.innerHTML = questionnaire[counter].options[1];
-    opt_3.innerHTML = questionnaire[counter].options[2];
-    opt_4.innerHTML = questionnaire[counter].options[3];
-
-    next_button.disabled = true;
+    
+    options.forEach((option, index) => {
+        option.innerHTML = questionnaire[counter].options[index];
+    });
+    
 }
 
 optionButtons.forEach((button, index) => {
+    
     button.addEventListener("click", () => {
-        console.log(index);
-        console.log(button);
+        
+        next_button.disabled = false;
         next_button.style.backgroundColor = "#7008E7";
         next_button.style.color = "white";
-
-        question_counter.innerHTML = `${counter+1}` + " / 7";
-
-        next_button.disabled = false;
+        
+        
         optionButtons.forEach((option) => {
             option.style.pointerEvents = "none";
         });
-
-        if(questionnaire[counter].answer - 1 == index){
+        
+        let progress = ((counter + 1) / questionnaire.length) * 100;
+        progressBar.style.width = `${progress}%`;
+        question_counter.innerHTML = `${counter + 1} / ${questionnaire.length}`;
+        
+        if(questionnaire[counter].answer - 1 === index){
             button.style.backgroundColor = "#ECFDF5";
             button.style.borderColor = "#00D492";
             ans.innerHTML = "Correct! Nice one!";
             ans.style.color = "#00D492";
-
+            
             score++;
         }
         else{
             optionButtons[questionnaire[counter].answer - 1].style.backgroundColor = "#ECFDF5";
             optionButtons[questionnaire[counter].answer - 1].style.borderColor = "#00D492";
+
             button.style.backgroundColor = "#FEF2F2";
             button.style.borderColor = "#FF6467";
+
             ans.innerHTML = `Not Quite - The answer was "${questionnaire[counter].options[questionnaire[counter].answer - 1]}"`; 
             ans.style.color = "#FF6467";
         }
+
     });
 });
 
@@ -207,20 +211,32 @@ next_button.addEventListener("click", () => {
     else{
         quiz_page.style.display = "none";
         restart_page.style.display = "flex";
-        restart();
+        showResults();
     }
 });
 
-function restart(){
+function showResults(){
     score_disp.innerHTML = `${score}`;
+
+    if (score <= 2){
+        review_line_1.textContent = "Don't worry, every expert starts somewhere. Keep practicing and you'll improve fast!";
+    } 
+    else if (score <= 4){
+        review_line_1.textContent = "Nice effort! You've got a good grasp, just a little more revision and you'll nail it.";
+    }
+    else if (score <= 6){
+        review_line_1.textContent = "Great job! You clearly know your stuff - just shy of perfection.";
+    }
+    else{
+        review_line_1.textContent = "Outstanding! You're a true quiz master - flawless performance!";
+    }
 }
 
 play_again.addEventListener("click", () => {
-    main_page.style.display = "none";
     quiz_page.style.display = "flex";
     restart_page.style.display = "none";
-    counter = 0;
-    score = 0;
+    
+    resetGame();
     startQuiz();
 });
 
@@ -228,6 +244,13 @@ home_page.addEventListener("click", () => {
     main_page.style.display = "flex";
     quiz_page.style.display = "none";
     restart_page.style.display = "none";
+    
+    resetGame();
+});
+
+function resetGame() {
     counter = 0;
     score = 0;
-})
+    progressBar.style.width = "0%";
+    question_counter.innerHTML = `0 / ${questionnaire.length}`;
+}

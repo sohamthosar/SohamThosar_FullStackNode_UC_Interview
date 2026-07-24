@@ -4,7 +4,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: rgb(184, 65, 253); */
     background: linear-gradient(
         to bottom right,
         rgb(45, 27, 105) 0%,
@@ -53,10 +52,12 @@ hr{
 }
 
 .line1, .line2{
+    display: flex;
     font-size: 14px;
     font-family: "Nunito", sans-serif;
     font-weight: 400;
     color: oklab(0.999994 0.0000455677 0.0000200868 / 0.7);
+    align-self: center;
 }
 
 .line2{
@@ -105,7 +106,15 @@ hr{
     margin: 0%;
     border: none;
     border-radius: 25px;
+    transition: all 0.3s ease-in-out;
 }
+
+#start:hover {
+  background-color: #fcd34d; /* amber-300 */
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 25px -5px rgba(251, 191, 36, 0.4);
+}
+
 
 .line3{
     font-family: "Nunito", sans-serif;
@@ -153,12 +162,20 @@ hr{
     color: rgba(255, 255, 255, 0.600);
 }
 
-.progress-bar{
+.progress-container{
     height: 1%;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.200);
     border: none;
     border-radius: 4px;
+}
+
+.progress-bar{
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, rgb(245, 158, 11), rgb(236, 72, 153));
+    border-radius: inherit;
+    transition: width 0.4s ease-in-out;
 }
 
 .question-card{
@@ -231,8 +248,8 @@ hr{
 }
 
 #option-wrapper-1:hover, #option-wrapper-2:hover, #option-wrapper-3:hover, #option-wrapper-4:hover{
-    background-color: #FAF5FF;
-    border: 2px solid #9F7AEA;
+    background-color: #F3E5F5;
+    border: 2px solid #9C27B0;
 }
 
 .option-letter{
@@ -347,13 +364,13 @@ hr{
     border-radius: 0px 0px 20px 20px;
 }
 
-#review-line-2{
+/* #review-line-2{
     width: 80%;
     font-family: "Nunito", sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: #4A5565;
-}
+} */
 
 .play-again-button{
     width: 80%;
@@ -372,7 +389,19 @@ hr{
     font-family: "Nunito", sans-serif;
     font-weight: 900;
     font-size: 16px;
+    transition: all 0.3s ease-in-out;
 }
+
+#play-again:hover {
+  background-color: #6d28d9; /* violet-600 */
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 20px -5px rgba(109, 40, 217, 0.4);
+}
+
+#play-again:active {
+  transform: scale(0.95);
+}
+
 
 .home-page-button{
     width: 80%;
@@ -391,4 +420,56 @@ hr{
     font-family: "Nunito", sans-serif;
     font-weight: 900;
     font-size: 14px;
+}
+
+#home-page:hover{
+    color: #4B5563;
+}
+
+#start:hover, #option-wrapper-1:hover, #option-wrapper-2:hover, #option-wrapper-3:hover, #option-wrapper-4:hover, #play-again:hover, #home-page:hover, #next:hover{
+    cursor: pointer;
+}
+
+@media screen and (width<=768px){
+    .main-page{
+        width: 100%;
+    }
+
+    .game-description{
+        width: 50%;
+    }
+
+    .start-button{
+        width: 50%;
+    }
+
+    .quiz-page{
+        width: 70%;
+    }
+
+    .restart-page{
+        width: 50%;
+    }
+}
+
+@media screen and (width<=425px){
+    .game-description{
+        width: 100%;
+    }
+
+    .quiz-page{
+        width: 90%;
+    }
+
+    .restart-page{
+        width: 80%;
+    }
+
+    #review-line-1{
+        font-size: 16px;
+    }
+
+    #option-1, #option-2, #option-3, #option-4{
+        font-size: 16px;
+    }
 }
