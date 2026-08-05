@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {EpisodeCard} from './EpisodeCard';
 
-export const Main = () => {
+export const Main = ({searchItem}) => {
 
     const [episodes, setEpisodes] = useState([]);
 
@@ -15,11 +15,17 @@ export const Main = () => {
         }
         fetchEpisodes();
     }, []);
+
+    const filteredEpisodes = episodes.filter((episode) =>
+        episode.name.toLowerCase().includes(searchItem.toLowerCase())
+    );
+
     return (
         <div className='container my-4' style={{ display: 'flex', flexDirection: "column", gap: "4px", alignItems: "center", justifyContent: "center" }}>
+            <h3>Showing {filteredEpisodes.length} of {episodes.length} episodes</h3><hr style={{width : "100%"}}/>
             {
-                episodes.map((episode) => (
-                    <EpisodeCard key={episode.id} episode={episode}/>
+                filteredEpisodes.map((episode) => (
+                    <EpisodeCard key={episode.id} episode={episode}/> 
                 ))
             }
         </div>
